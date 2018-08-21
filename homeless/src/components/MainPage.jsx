@@ -7,7 +7,7 @@ export default class MainPage extends React.Component{
         this.state = {}
     }
 
-    onSubmit = event =>{
+    onSubmit = event => {
         return;
     }
 

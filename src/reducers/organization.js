@@ -1,7 +1,6 @@
-
-import {FETCH_INITIAL_REQUEST} from '../actions';
-
-
+import {
+	FETCH_DATA_REQUEST
+} from '../actions/action-types';
 
 const initialState = {
 	organization_id: null,
@@ -12,7 +11,7 @@ const initialState = {
 };
 
 export const reducer = (state = initialState, action) => {
-	if(action.type === FETCH_INITIAL_REQUEST) {
+	if(action.type === FETCH_DATA_REQUEST) {
 		return {
 			...state, 
 			loading: true
@@ -21,3 +20,5 @@ export const reducer = (state = initialState, action) => {
 
 	return state;
 };
+
+export default reducer;

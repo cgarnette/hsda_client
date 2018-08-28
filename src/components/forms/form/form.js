@@ -1,30 +1,12 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 import './form.css';
 
-export class Form extends React.Component {
-
-	state = {
-		isValidated: false,
-		fields: []
-	};
-
-	mapFieldsToState = (children) => {
-		const filtered = children.filter(child => (child !== null && child !== undefined));
-		return filtered.map(child => child !== null && child.type.name ==='Field' ? {name: child.props.name, onChange: child.props.onChange} : undefined)
-			.filter(el => el !== undefined);
-	}
-
-	componentDidMount() {
-		this.setState((prevState, props) => ({
-			fields: this.mapFieldsToState(props.children)
-		}));
-	}
+export class Form extends Component {
 
 	//Form validate method implemented with the HTML5 validation API...
 	validate = () => {
-
 		const formEl = this.formEl;
 		const formLength = formEl.length;
 
@@ -58,19 +40,15 @@ export class Form extends React.Component {
 		if (this.validate()) {
 			this.props.onSubmit();
 		}
-		this.setState({ isValidated: true });
 	}
-
 	render() {
-		const header = this.props.header ? this.props.header : undefined;
 		return (
 			<form
 				ref={form => (this.formEl = form)}
-				onSubmit={(e) => this.submitHandler(e)}
-				noValidate
+				onSubmit={this.submitHandler}
 			>
 				<fieldset className="form-fieldset">
-					<legend className="form-legend">{header}</legend>
+					<legend className="form-legend">{this.props.header ? this.props.header : undefined}</legend>
 					{this.props.children}
 				</fieldset>
 			</form>

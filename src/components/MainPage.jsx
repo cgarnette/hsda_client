@@ -5,7 +5,11 @@ export default class MainPage extends React.Component{
     constructor(props){
         super(props)
         this.state = {}
-    }
+		}
+		
+		componentDidMount() {
+
+		}
 
     onSubmit = event => {
         return;
